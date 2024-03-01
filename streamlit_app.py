@@ -8,8 +8,7 @@ llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key='AIzaSyDl
 
 def generate_recommendation(image):
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    hmessage = [
-       { "role":"user",
+    hmessage = { "role":"user",
         "content":{
             "type": "text",
             "text": "Generate a book recommendation that matches the content of the uploaded image. Explain why that book was chosen and how it relates to the given image in 5 words."
@@ -18,7 +17,7 @@ def generate_recommendation(image):
             "type": "image",
             "image": image
         }
-        ]
+               }
     content_str = str(hmessage['content'])
     msg = HumanMessage(content=content_str, role="user")
     response = llm.invoke(hmessage)
