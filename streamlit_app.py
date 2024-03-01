@@ -15,18 +15,19 @@ def generate_recommendation(image):
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
     # Generate recommendation based on image content
-    hmessage = {
-        "role":"user",
-        "content":[
-        {
+    hmessage = [
+       { "role":"user",
+        "content":{
             "type": "text",
             "text": "Generate a book recommendation that matches the content of the uploaded image. Explain why that book was chosen and how it relates to the given image in 5 words."
-        },
-        {
+        }},
+        {"role":"user",
+        "content":{
             "type": "image",
             "image": image
-        }]
+        }
     }
+        ]
     msg = llm.invoke(hmessage)
     recommendation = msg.content
 
