@@ -9,7 +9,7 @@ llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key='AIzaSyDl
 def generate_recommendation(image):
     # Display uploaded image
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    hmessage1 = HumanMessage(
+    hmessage = HumanMessage(
     content=[
         {
             "type": "text",
@@ -19,15 +19,7 @@ def generate_recommendation(image):
          "image_url": image},
     ]
        )
-    
-    # Convert the content to a string
-    content_str = str(hmessage['content'])
-
-    # Create HumanMessage with content as a string
-    msg = HumanMessage(content=content_str, role="user")
-
-    # Invoke the model with the message
-    response = llm.invoke(msg)
+    message1 = llm.invoke([hmessage1])
 
     recommendation = response.content
 
