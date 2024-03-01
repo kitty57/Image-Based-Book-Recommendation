@@ -14,8 +14,7 @@ def generate_recommendation(image):
             "type": "text",
             "text": "Generate a book recommendation that matches the content of the uploaded image. Explain why that book was chosen and how it relates to the given image in 5 words."
         },
-        {"role":"user",
-        "content":{
+        {
             "type": "image",
             "image": image
         }
