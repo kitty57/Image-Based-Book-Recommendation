@@ -19,7 +19,7 @@ def generate_recommendation(image):
          "image_url": image},
     ]
        )
-    message1 = llm.invoke([hmessage1])
+    response = llm.invoke([hmessage1])
 
     recommendation = response.content
 
