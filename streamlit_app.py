@@ -4,7 +4,6 @@ from PIL import Image
 from io import BytesIO
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage
-st.set_page_config(layout="wide")
 llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key='AIzaSyDlBFVsmV8pao6Ax-bcR0dc5h4CusiNCsc')
 def generate_recommendation(image):
     image = image.resize((300, 300))
