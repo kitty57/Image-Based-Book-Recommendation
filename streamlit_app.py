@@ -8,7 +8,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 st.set_page_config(layout="wide")
 
 # Set up Google Generative AI model
-llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key=userdata.get('GOOGLE_API_KEY'))
+llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key='AIzaSyDlBFVsmV8pao6Ax-bcR0dc5h4CusiNCsc')
 
 def generate_recommendation(image):
     # Display uploaded image
