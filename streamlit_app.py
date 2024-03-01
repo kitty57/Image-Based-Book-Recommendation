@@ -5,23 +5,37 @@ from io import BytesIO
 from langchain_google_genai import ChatGoogleGenerativeAI
 st.set_page_config(layout="wide")
 llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key='AIzaSyDlBFVsmV8pao6Ax-bcR0dc5h4CusiNCsc')
-
 def generate_recommendation(image):
+    # Display uploaded image
     st.image(image, caption='Uploaded Image', use_column_width=True)
-    hmessage = { "role":"user",
-        "content":{
-            "type": "text",
-            "text": "Generate a book recommendation that matches the content of the uploaded image. Explain why that book was chosen and how it relates to the given image in 5 words."
-        },
-        {
-            "type": "image",
-            "image": image
-        }
-               }
+
+    # Generate recommendation based on image content
+    hmessage = {
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": "Generate a book recommendation that matches the content of the uploaded image. Explain why that book was chosen and how it relates to the given image in 5 words."
+            },
+            {
+                "type": "image",
+                "image": image
+            }
+        ]
+    }
+    
+    # Convert the content to a string
     content_str = str(hmessage['content'])
+
+    # Create HumanMessage with content as a string
     msg = HumanMessage(content=content_str, role="user")
-    response = llm.invoke(hmessage)
+
+    # Invoke the model with the message
+    response = llm.invoke(msg)
+
     recommendation = response.content
+
+    # Display recommendation
     st.write("**Book Recommendation:**")
     st.write(recommendation)
 
