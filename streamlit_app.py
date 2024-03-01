@@ -8,25 +8,23 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 st.set_page_config(layout="wide")
 
 # Set up Google Generative AI model
-llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key='AIzaSyDlBFVsmV8pao6Ax-bcR0dc5h4CusiNCsc')
+llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key=userdata.get('GOOGLE_API_KEY'))
 
 def generate_recommendation(image):
     # Display uploaded image
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
     # Generate recommendation based on image content
-    hmessage = {
-        "content": [
-            {
-                "type": "text",
-                "text": "Generate a book recommendation that matches the content of the uploaded image. Explain why that book was chosen and how it relates to the given image in 5 words."
-            },
-            {
-                "type": "image",
-                "image": image
-            }
-        ]
-    }
+    hmessage = [
+        {
+            "type": "text",
+            "text": "Generate a book recommendation that matches the content of the uploaded image. Explain why that book was chosen and how it relates to the given image in 5 words."
+        },
+        {
+            "type": "image",
+            "image": image
+        }
+    ]
     msg = llm.invoke(hmessage)
     recommendation = msg.content
 
