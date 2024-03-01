@@ -6,7 +6,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage
 llm = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key='AIzaSyDlBFVsmV8pao6Ax-bcR0dc5h4CusiNCsc')
 def generate_recommendation(image):
-    image = image.resize((200,280))
+    image = image.resize((200,350))
     st.image(image, caption='Uploaded Image')
     hmessage = HumanMessage(
     content=[
